@@ -14,6 +14,7 @@ impl Player {
     }
     pub fn move_from_input(&self, api: &mut dyn DoryenApi) -> (i32, i32) {
         let input = api.input();
+
         let mut mov = (0, 0);
         if input.key(ScanCode::Left) || input.key(ScanCode::A) {
             mov.0 = -1;

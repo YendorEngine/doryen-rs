@@ -44,8 +44,10 @@ impl Engine for DoryenDemo {
             }
         }
         if self.loaded {
-            let mut coef = 1.0 / std::f32::consts::SQRT_2;
+            let mut coef = 1.0;
+            // let mut coef = 1.0 / std::f32::consts::SQRT_2;
             let mut mov = self.player.move_from_input(api);
+
             if self.level.is_wall(self.player.next_pos((mov.0, 0))) {
                 mov.0 = 0;
                 coef = 1.0;
@@ -71,10 +73,7 @@ impl Engine for DoryenDemo {
             api.con().print_color(
                 (CONSOLE_WIDTH / 2) as i32,
                 (CONSOLE_HEIGHT - 2) as i32,
-                &format!(
-                    "#[white]Move with #[red]arrows or WSAD #[white]   {:4} fps",
-                    fps
-                ),
+                &format!("#[white]Move with #[red]arrows or WSAD #[white]   {fps:4} fps"),
                 TextAlign::Center,
                 None,
             );

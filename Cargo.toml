@@ -1,27 +1,27 @@
 [package]
-name = "doryen-rs"
-version = "1.4.0"
-authors = ["jice <jice.nospam@gmail.com>"]
-description = "Pure rust OpenGL accelerated roguelike console API with native/wasm support"
-license = "MIT"
-edition = "2021"
+authors       = ["jice <jice.nospam@gmail.com>"]
+description   = "Pure rust OpenGL accelerated roguelike console API with native/wasm support"
 documentation = "https://docs.rs/doryen-rs"
-repository = "https://github.com/jice-nospam/doryen-rs"
-keywords = ["roguelike", "console", "opengl", "wasm"]
-homepage = "https://jice-nospam.github.io/doryen-rs/index.html"
-exclude = ["www/*"]
+edition       = "2021"
+exclude       = ["www/*"]
+homepage      = "https://jice-nospam.github.io/doryen-rs/index.html"
+keywords      = ["roguelike", "console", "opengl", "wasm"]
+license       = "MIT"
+name          = "doryen-rs"
+repository    = "https://github.com/jice-nospam/doryen-rs"
+version       = "1.4.0"
 
 [dependencies]
-uni-gl = "0.2.*"
-uni-app = "0.3.*"
+uni-app = { git = "https://github.com/unrust/uni-app" }
+uni-gl  = { git = "https://github.com/unrust/uni-gl" }
 
 [dependencies.image]
-version = "0.23.*"
 default-features = false
-features = ["png"]
+features         = ["png"]
+version          = "0.24"
 
 [dev-dependencies]
-unicode-segmentation = "1.6.0"
-doryen-fov = "0.1.*"
+doryen-fov           = "0.1"
+unicode-segmentation = "1"
 
 [features]

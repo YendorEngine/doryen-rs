@@ -155,8 +155,7 @@ impl Program {
     }
 
     pub fn set_texture(&mut self, gl: &WebGLRenderingContext, font: WebGLTexture) {
-        if let Some(&Some(ref sampler_location)) = self.uniform_locations.get(&DoryenUniforms::Font)
-        {
+        if let Some(Some(sampler_location)) = self.uniform_locations.get(&DoryenUniforms::Font) {
             gl.active_texture(0);
             gl.bind_texture(&font);
             gl.uniform_1i(sampler_location, 0);
@@ -204,22 +203,22 @@ impl Program {
         // TODO textures size should only be power of two
         // let pot_font_width = get_pot_value(font_width);
         // let pot_font_height = get_pot_value(font_height);
-        if let Some(&Some(ref location)) = self.uniform_locations.get(&DoryenUniforms::TermSize) {
+        if let Some(Some(location)) = self.uniform_locations.get(&DoryenUniforms::TermSize) {
             gl.uniform_2f(location, (con_width as f32, con_height as f32));
         }
-        if let Some(&Some(ref location)) = self.uniform_locations.get(&DoryenUniforms::TermCoef) {
+        if let Some(Some(location)) = self.uniform_locations.get(&DoryenUniforms::TermCoef) {
             gl.uniform_2f(
                 location,
                 (1.0 / (pot_width as f32), 1.0 / (pot_height as f32)),
             );
         }
-        if let Some(&Some(ref location)) = self
+        if let Some(Some(location)) = self
             .uniform_locations
             .get(&DoryenUniforms::FontCharsPerLine)
         {
             gl.uniform_1f(location, (font_width as f32) / (char_width as f32));
         }
-        if let Some(&Some(ref location)) = self.uniform_locations.get(&DoryenUniforms::FontCoef) {
+        if let Some(Some(location)) = self.uniform_locations.get(&DoryenUniforms::FontCoef) {
             gl.uniform_2f(
                 location,
                 (
@@ -239,6 +238,7 @@ impl Program {
         );
     }
 
+    #[allow(clippy::too_many_arguments)]
     fn update_uniform_texture(
         &mut self,
         gl: &WebGLRenderingContext,
@@ -249,7 +249,7 @@ impl Program {
         pot_width: u32,
         pot_height: u32,
     ) {
-        if let Some(&Some(ref location)) = self.uniform_locations.get(&uniform) {
+        if let Some(Some(location)) = self.uniform_locations.get(&uniform) {
             gl.active_texture(tex_num);
             gl.bind_texture(tex);
             gl.tex_image2d(

@@ -35,8 +35,8 @@ impl FontLoader {
                 self.id = id;
                 self.load_font_async();
             }
-            Err(msg)=> {
-                eprint!("Error while loading file {} : {}",path,msg);
+            Err(msg) => {
+                eprint!("Error while loading file {path} : {msg}");
             }
         }
     }

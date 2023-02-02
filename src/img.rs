@@ -122,6 +122,7 @@ impl Image {
     /// x,y are the coordinate of the image center in the console
     /// image can be scaled and rotated (angle is in radians)
     /// image pixels using the transparent color will be ignored
+    #[allow(clippy::too_many_arguments)]
     pub fn blit_ex(
         &mut self,
         con: &mut Console,
@@ -138,7 +139,12 @@ impl Image {
         let size = self.try_get_size().unwrap();
         let rx = x - size.0 as f32 * 0.5;
         let ry = y - size.1 as f32 * 0.5;
-        if scalex == 1.0 && scaley == 1.0 && angle == 0.0 && rx.floor() == rx && ry.floor() == ry {
+        if (scalex - 1.0).abs() < f32::EPSILON
+            && (scaley - 1.0).abs() < f32::EPSILON
+            && angle == 0.0
+            && (rx.floor() - rx).abs() < f32::EPSILON
+            && (ry.floor() - ry).abs() < f32::EPSILON
+        {
             let ix = rx as i32;
             let iy = ry as i32;
             self.blit(con, ix, iy, transparent);
@@ -223,6 +229,7 @@ impl Image {
     /// Pyromancer! screenshot, making full usage of subcell resolution:
     ///
     /// ![subcell_pyro](https://raw.githubusercontent.com/jice-nospam/doryen-rs/master/docs/subcell/subcell_pyro.png)
+    #[allow(clippy::too_many_arguments)]
     pub fn blit_2x(
         &mut self,
         con: &mut Console,
@@ -242,6 +249,7 @@ impl Image {
         }
     }
     /// blit an image on a console. See [`Image::blit_2x`]
+    #[allow(clippy::too_many_arguments)]
     pub fn blit_2x_image(
         img: &image::RgbaImage,
         con: &mut Console,

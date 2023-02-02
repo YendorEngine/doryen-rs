@@ -32,7 +32,7 @@ impl Engine for MyRoguelike {
         con.print_color(
             (con.get_width() / 2) as i32,
             (con.get_height() / 2) as i32,
-            &format!("Frames since last second : #[red]{}", fps),
+            &format!("Frames since last second : #[red]{fps}"),
             TextAlign::Center,
             None,
         );

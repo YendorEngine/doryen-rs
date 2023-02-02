@@ -39,6 +39,7 @@ pub trait InputApi {
     fn close_requested(&self) -> bool;
 }
 
+#[derive(Clone, Default, Debug)]
 pub struct DoryenInput {
     kdown: HashMap<ScanCode, bool>,
     kpressed: HashMap<ScanCode, bool>,
@@ -188,7 +189,7 @@ impl InputApi for DoryenInput {
     }
 }
 
-type KeyMapFilter<'a> = Filter<
+pub type KeyMapFilter<'a> = Filter<
     std::collections::hash_map::Iter<'a, ScanCode, bool>,
     fn(&(&'a ScanCode, &'a bool)) -> bool,
 >;

@@ -91,7 +91,7 @@ impl Level {
     pub fn render(&mut self, api: &mut dyn DoryenApi, player_pos: (i32, i32)) {
         if self.ground.try_load() {
             self.compute_lightmap(player_pos);
-            let mut con = api.con();
+            let con = api.con();
             for y in 0..self.size.1 as usize * 2 {
                 for x in 0..self.size.0 as usize * 2 {
                     let off = self.offset_2x((x as i32, y as i32));
@@ -126,7 +126,7 @@ impl Level {
                 }
             }
             self.render_output
-                .blit_2x(&mut con, 0, 0, 0, 0, None, None, None);
+                .blit_2x(con, 0, 0, 0, 0, None, None, None);
         }
     }
     pub fn is_in_fov(&self, pos: (i32, i32)) -> bool {
@@ -207,9 +207,9 @@ impl Level {
         }
     }
     fn offset(&self, (x, y): (i32, i32)) -> usize {
-        (x + y * self.size.0 as i32) as usize
+        (x + y * self.size.0) as usize
     }
     fn offset_2x(&self, (x, y): (i32, i32)) -> usize {
-        (x + y * self.size.0 as i32 * 2) as usize
+        (x + y * self.size.0 * 2) as usize
     }
 }

@@ -60,7 +60,7 @@ impl Engine for PerfTest {
         con.print(
             (con_width / 2) as i32,
             (con_height / 2) as i32,
-            &format!("{} fps", fps),
+            &format!("{fps} fps"),
             TextAlign::Center,
             Some((255, 255, 255, 255)),
             None,

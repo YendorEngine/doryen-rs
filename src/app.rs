@@ -57,6 +57,7 @@ pub trait DoryenApi {
     fn get_screen_size(&self) -> (u32, u32);
 }
 
+#[derive(Clone)]
 struct DoryenApiImpl {
     con: Console,
     input: DoryenInput,
@@ -285,11 +286,11 @@ impl App {
             self.char_width = self.font_loader.char_width;
             self.char_height = self.font_loader.char_height;
         } else {
-            self.char_width = img.width() as u32 / 16;
-            self.char_height = img.height() as u32 / 16;
+            self.char_width = img.width() / 16;
+            self.char_height = img.height() / 16;
         }
-        self.font_width = img.width() as u32;
-        self.font_height = img.height() as u32;
+        self.font_width = img.width();
+        self.font_height = img.height();
         uni_app::App::print(format!(
             "font size: {:?} char size: {:?}",
             (self.font_width, self.font_height),
@@ -304,7 +305,7 @@ impl App {
             img.height() as u16,                 // height
             uni_gl::PixelFormat::Rgba,           // format
             uni_gl::PixelType::UnsignedByte,     // type
-            &*img,                               // data
+            &img,                                // data
         );
     }
 

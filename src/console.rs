@@ -26,6 +26,7 @@ pub enum TextAlign {
 }
 
 /// This contains the data for a console (including the one displayed on the screen) and methods to draw on it.
+#[derive(Clone)]
 pub struct Console {
     width: u32,
     height: u32,
@@ -387,6 +388,8 @@ impl Console {
             ix += 1;
         }
     }
+
+    #[allow(clippy::too_many_arguments)]
     /// draw a rectangle, possibly filling it with a character.
     pub fn rectangle(
         &mut self,
@@ -420,6 +423,8 @@ impl Console {
             self.area(x + 1, y + 1, w - 2, h - 2, fore, back, fill);
         }
     }
+
+    #[allow(clippy::too_many_arguments)]
     /// fill an area with values
     pub fn area(
         &mut self,
@@ -506,6 +511,8 @@ impl Console {
             key_color,
         );
     }
+
+    #[allow(clippy::too_many_arguments)]
     /// blit a region of this console onto another one.
     /// see [`Console::blit`]
     pub fn blit_ex(
