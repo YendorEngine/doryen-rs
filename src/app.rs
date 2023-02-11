@@ -125,6 +125,7 @@ pub trait Engine {
     fn resize(&mut self, _api: &mut dyn DoryenApi) {}
 }
 
+#[derive(Clone, Debug)]
 pub struct AppOptions {
     /// the console width in characters. Default is 80
     pub console_width: u32,
@@ -276,8 +277,9 @@ impl App {
             screen_resolution,
         }
     }
-    pub fn set_engine(&mut self, engine: Box<dyn Engine>) {
+    pub fn set_engine(mut self, engine: Box<dyn Engine>) -> Self {
         self.engine = Some(engine);
+        self
     }
 
     fn load_font_bytes(&mut self) {
